@@ -3,6 +3,7 @@ package com.rd.projetospring.primeiroprojeto.controller;
 import com.rd.projetospring.primeiroprojeto.dto.Cidade;
 import com.rd.projetospring.primeiroprojeto.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,22 +29,24 @@ public class CidadeController {
 
 
     @PostMapping("/cidade")
-    public String inserirCidade(@RequestBody Cidade cidade) {
+    public ResponseEntity<String> inserirCidade(@RequestBody Cidade cidade) {
 
-        return "Cadastro de cidade feito com sucesso";
+        String retorno = service.cadastrar(cidade);
+        return ResponseEntity.status(HttpStatus.OK).body(retorno);
     }
 
 
     @PutMapping("/cidade/{id}")
-    public String alterarCidade(@RequestBody Cidade cidade, @PathVariable("id") BigInteger id) {
+    public ResponseEntity alterarCidade(@RequestBody Cidade cidade, @PathVariable("id") BigInteger id) {
 
-        return "Alteração de cidade feita com sucesso";
+        String retorno = service.alterarCidade(cidade, id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(retorno);
     }
 
     @DeleteMapping("/cidade/{id}")
-    public String deletarCidade(@PathVariable("id") BigInteger id) {
-
-        return "Exclusão de cidade feita com sucesso";
+    public ResponseEntity deletarCidade(@PathVariable("id") BigInteger id) {
+        String retorno = service.deletarCidade(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(retorno);
     }
 
 }

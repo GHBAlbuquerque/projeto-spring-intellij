@@ -5,11 +5,9 @@ import com.rd.projetospring.primeiroprojeto.entity.CidadeEntity;
 import com.rd.projetospring.primeiroprojeto.repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.websocket.server.PathParam;
+import javax.transaction.Transactional;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +34,43 @@ public class CidadeService {
     public List verCidades(BigInteger id) {
         List<CidadeEntity> cidades = repository.findAll();
         return cidades;
+    }
+
+    @Transactional
+    public String cadastrar(Cidade cidade) {
+        CidadeEntity cidadeEntity = new CidadeEntity();
+
+        cidadeEntity.setIdUf(cidade.getIdUF());
+        cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
+        cidadeEntity.setDsCidade(cidade.getDsCidade());
+
+        repository.save(cidadeEntity);
+
+        return "Inserção feita com sucesso!";
+    }
+
+    @Transactional
+    public String alterarCidade(Cidade cidade, BigInteger id) {
+        Optional<CidadeEntity> optional = repository.findById(id);
+        CidadeEntity cidadeEntity = optional.get();
+
+        cidadeEntity.setIdUf(cidade.getIdUF());
+        cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
+        cidadeEntity.setDsCidade(cidade.getDsCidade());
+
+        repository.save(cidadeEntity);
+
+        return "Alteração feita com sucesso!";
+    }
+
+    public String deletarCidade(BigInteger id) {
+//        Optional<UsuarioEntity> optional = repository.findById(id);
+//        UsuarioEntity usuarioEntity = optional.get();
+//        repository.delete(usuarioEntity);
+
+        repository.deleteById(id);
+
+        return "Remoção feita com sucesso!";
     }
 
 

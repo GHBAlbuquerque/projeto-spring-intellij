@@ -18,7 +18,7 @@ public class UsuarioService {
     private UsuarioRepository repository;
 
     public UsuarioEntity getUsuarioById(BigInteger id) {
-        System.out.println("ID: " + id);
+        //System.out.println("ID: " + id);
         Optional<UsuarioEntity> optional = repository.findById(id);
         return optional.get();
     }
