@@ -24,7 +24,7 @@ public class CidadeService {
 
         Cidade cidade = new Cidade();
         cidade.setIdCidade(cidadeEntity.getIdCidade());
-        cidade.setIdUF(cidadeEntity.getIdUf());
+        cidade.setIdUf(cidadeEntity.getIdUf());
         cidade.setCdCidadeIbge(cidadeEntity.getCdCidadeIbge());
         cidade.setDsCidade(cidadeEntity.getDsCidade());
 
@@ -40,7 +40,7 @@ public class CidadeService {
     public String cadastrar(Cidade cidade) {
         CidadeEntity cidadeEntity = new CidadeEntity();
 
-        cidadeEntity.setIdUf(cidade.getIdUF());
+        cidadeEntity.setIdUf(cidade.getIdUf());
         cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
         cidadeEntity.setDsCidade(cidade.getDsCidade());
 
@@ -54,7 +54,7 @@ public class CidadeService {
         Optional<CidadeEntity> optional = repository.findById(id);
         CidadeEntity cidadeEntity = optional.get();
 
-        cidadeEntity.setIdUf(cidade.getIdUF());
+        cidadeEntity.setIdUf(cidade.getIdUf());
         cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
         cidadeEntity.setDsCidade(cidade.getDsCidade());
 

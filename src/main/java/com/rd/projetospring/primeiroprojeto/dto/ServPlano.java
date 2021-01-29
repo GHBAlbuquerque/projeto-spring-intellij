@@ -9,9 +9,8 @@ import java.math.BigInteger;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cidade {
-    private BigInteger idCidade;
-    private BigInteger idUf;
-    private BigInteger cdCidadeIbge;
-    private String	dsCidade;
+public class ServPlano {
+
+    private BigInteger idServicoPlano;
+    private String dsServico;
 }

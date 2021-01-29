@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_CIDADE")
@@ -13,7 +14,7 @@ public class CidadeEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_CIDADE")
     private BigInteger idCidade;
 
@@ -25,5 +26,6 @@ public class CidadeEntity implements Serializable {
 
     @Column(name="DS_CIDADE")
     private String dsCidade;
+
 
 }
