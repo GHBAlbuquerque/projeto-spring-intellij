@@ -2,7 +2,9 @@ package com.rd.projetospring.primeiroprojeto.service;
 
 import com.rd.projetospring.primeiroprojeto.dto.Cidade;
 import com.rd.projetospring.primeiroprojeto.entity.CidadeEntity;
+import com.rd.projetospring.primeiroprojeto.entity.UfEntity;
 import com.rd.projetospring.primeiroprojeto.repository.CidadeRepository;
+import com.rd.projetospring.primeiroprojeto.repository.UfRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +16,18 @@ import java.util.Optional;
 @Service
 public class CidadeService {
 
-    @Autowired
-    private CidadeRepository repository;
+    @Autowired private CidadeRepository repository;
+    @Autowired private UfRepository ufRepository;
 
     public Cidade verCidade(BigInteger id) {
 
         Optional<CidadeEntity> optional = repository.findById(id);
         CidadeEntity cidadeEntity = optional.get();
 
+
         Cidade cidade = new Cidade();
         cidade.setIdCidade(cidadeEntity.getIdCidade());
-        cidade.setIdUf(cidadeEntity.getIdUf());
+        cidade.setIdUf(cidadeEntity.getUf().getIdUf());
         cidade.setCdCidadeIbge(cidadeEntity.getCdCidadeIbge());
         cidade.setDsCidade(cidadeEntity.getDsCidade());
 
@@ -40,7 +43,9 @@ public class CidadeService {
     public String cadastrar(Cidade cidade) {
         CidadeEntity cidadeEntity = new CidadeEntity();
 
-        cidadeEntity.setIdUf(cidade.getIdUf());
+        UfEntity ufEntity = ufRepository.findById(cidadeEntity.getUf().getIdUf()).get();
+
+        cidadeEntity.setUf(ufEntity);
         cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
         cidadeEntity.setDsCidade(cidade.getDsCidade());
 
@@ -53,8 +58,9 @@ public class CidadeService {
     public String alterarCidade(Cidade cidade, BigInteger id) {
         Optional<CidadeEntity> optional = repository.findById(id);
         CidadeEntity cidadeEntity = optional.get();
+        UfEntity ufEntity = ufRepository.findById(cidadeEntity.getUf().getIdUf()).get();
 
-        cidadeEntity.setIdUf(cidade.getIdUf());
+        cidadeEntity.setUf(ufEntity);
         cidadeEntity.setCdCidadeIbge(cidade.getCdCidadeIbge());
         cidadeEntity.setDsCidade(cidade.getDsCidade());
 

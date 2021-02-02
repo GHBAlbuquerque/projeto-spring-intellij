@@ -18,7 +18,7 @@ public class PlanosEntity implements Serializable {
     private BigInteger idPlano;
 
     @Column(name="NM_PLANO")
-    private String nomePlano;
+    private String nmPlano;
 
     @Column(name="DS_PLANO")
     private String dsPlano;
@@ -34,7 +34,7 @@ public class PlanosEntity implements Serializable {
             joinColumns = @JoinColumn(name = "ID_PLANO"),
             inverseJoinColumns = @JoinColumn(name = "ID_SERVICO_PLANO")
     )
-    private List<ServPlanoEntity> servicos;
+    private List<ServicoPlanoEntity> servicos;
 
 
 }

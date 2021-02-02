@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import javax.xml.ws.Response;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -16,8 +17,21 @@ import java.util.List;
 @RestController
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService service;
+    @Autowired private UsuarioService service;
+
+
+
+    @GetMapping("/usuario/cadastro")
+    public ResponseEntity getFormularioCadastro() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getFormularioCadastro());
+
+    }
+
+    @GetMapping("/usuario/meus-dados/{id}")
+    public ResponseEntity getFormularioMeusDados(@PathVariable("id") BigInteger id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getFormularioMeusDados(id));
+
+    }
 
     @GetMapping("/usuario")
     public ResponseEntity getUsuarios() {

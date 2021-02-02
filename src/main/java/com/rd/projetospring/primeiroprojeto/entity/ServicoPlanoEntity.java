@@ -9,7 +9,7 @@ import java.math.BigInteger;
 @Entity
 @Table(name = "TB_SERVICO_PLANO")
 @Data
-public class ServPlanoEntity implements Serializable {
+public class ServicoPlanoEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

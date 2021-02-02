@@ -1,5 +1,6 @@
 package com.rd.projetospring.primeiroprojeto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,14 +19,19 @@ public class CidadeEntity implements Serializable {
     @Column(name="ID_CIDADE")
     private BigInteger idCidade;
 
-    @Column(name="ID_UF")
-    private BigInteger idUf;
+//    @Column(name="ID_UF")
+//    private BigInteger idUf;
 
     @Column(name="CD_CIDADE_IBGE")
     private BigInteger cdCidadeIbge;
 
     @Column(name="DS_CIDADE")
     private String dsCidade;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_UF")
+    @JsonIgnore
+    private UfEntity uf;
 
 
 }

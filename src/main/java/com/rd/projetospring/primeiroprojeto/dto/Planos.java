@@ -1,6 +1,5 @@
 package com.rd.projetospring.primeiroprojeto.dto;
 
-import com.rd.projetospring.primeiroprojeto.entity.ServPlanoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Planos {
     private BigInteger idPlano;
-    private String nomePlano;
+    private String nmPlano;
     private String dsPlano;
     private String idServicoPlano;
     private Double vlPlano;
-    private List<ServPlano> servicos;
+    private List<ServicoPlano> servicos;
 
 }

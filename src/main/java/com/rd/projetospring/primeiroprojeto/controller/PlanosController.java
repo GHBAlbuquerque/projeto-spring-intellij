@@ -17,13 +17,14 @@ public class PlanosController {
     private PlanosService service;
 
     @GetMapping("/plano")
-    public ResponseEntity verPlanos(@PathParam("id") BigInteger id) {
-        return ResponseEntity.ok(service.verPlanos(id));
+    public ResponseEntity verPlanos() {
+
+        return ResponseEntity.ok(service.getPlanos());
     }
 
     @GetMapping("/plano/{id}")
     public ResponseEntity verPlano(@PathVariable("id") BigInteger id) {
-        return ResponseEntity.ok(service.verPlano(id));
+        return ResponseEntity.ok(service.getPlanoDTO(id));
 
     }
 
